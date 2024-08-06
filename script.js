@@ -1,19 +1,57 @@
-function calculateCost() {
-    let price = parseFloat(document.getElementById('price').value);
-    let quantity = parseInt(document.getElementById('quantity').value);
-    let tax = parseFloat(document.getElementById('tax').value) / 100;
-    let discount = parseFloat(document.getElementById('discount').value) / 100;
+let amount, rate, years;
 
-    if (isNaN(price) || isNaN(quantity) || isNaN(tax) || isNaN(discount)) {
-        alert('Por favor, ingrese todos los valores correctamente.');
+
+let result = 0;
+
+let yearlyResults = [];
+
+
+function calculateInvestment() {
+    
+    amount = parseFloat(document.getElementById('amount').value);
+    rate = parseFloat(document.getElementById('rate').value);
+    years = parseInt(document.getElementById('years').value);
+    
+    
+    if (isNaN(amount) || isNaN(rate) || isNaN(years)) {
+        document.getElementById('result').textContent = "Por favor, ingrese valores válidos.";
         return;
     }
 
-    let totalPrice = price * quantity;
-    let totalTax = totalPrice * tax;
-    let totalDiscount = totalPrice * discount;
+    
+    result = amount;
+    yearlyResults = [];
 
-    let totalCost = totalPrice + totalTax - totalDiscount;
+    
+    for (let i = 1; i <= years; i++) {
+        result *= (1 + rate / 100);
+        yearlyResults.push({ year: i, value: result });
+    }
 
-    document.getElementById('totalCost').innerText = totalCost.toFixed(2);
+    
+    displayResults();
 }
+
+
+function displayResults() {
+    const resultElement = document.getElementById('result');
+    resultElement.innerHTML = "";
+
+    yearlyResults.forEach(yearlyResult => {
+        const p = document.createElement('p');
+        p.textContent = `Año ${yearlyResult.year}: $${yearlyResult.value.toFixed(2)}`;
+        resultElement.appendChild(p);
+    });
+
+    const totalP = document.createElement('p');
+    totalP.textContent = `Total después de ${years} años: $${result.toFixed(2)}`;
+    resultElement.appendChild(totalP);
+}
+
+
+function findResultByYear(year) {
+    return yearlyResults.find(result => result.year === year);
+}
+
+
+console.log(findResultByYear(2)); 

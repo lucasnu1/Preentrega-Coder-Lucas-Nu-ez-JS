@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Costos de Productos</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Calculadora de Inversión</title>
 </head>
 <body>
     <div class="calculator">
-        <h1>Calculadora de Costos de Productos</h1>
-        <label for="price">Precio base ($):</label>
-        <input type="number" id="price" step="0.01">
-        
-        <label for="quantity">Cantidad:</label>
-        <input type="number" id="quantity">
-        
-        <label for="tax">Impuesto (%):</label>
-        <input type="number" id="tax" step="0.01">
-        
-        <label for="discount">Descuento (%):</label>
-        <input type="number" id="discount" step="0.01">
-        
-        <button onclick="calculateCost()">Calcular</button>
-        
-        <h2>Costo Total: $<span id="totalCost">0.00</span></h2>
+        <h1>Calculadora de Inversión</h1>
+        <label for="amount">Cantidad a Invertir ($):</label>
+        <input type="number" id="amount" placeholder="Ingrese la cantidad">
+
+        <label for="rate">Tasa de Interés (%):</label>
+        <input type="number" id="rate" placeholder="Ingrese la tasa de interés">
+
+        <label for="years">Número de Años:</label>
+        <input type="number" id="years" placeholder="Ingrese el número de años">
+
+        <button onclick="calculateInvestment()">Calcular</button>
+
+        <div class="result" id="result"></div>
     </div>
-    <script src="script.js"></script>
+
+    <script src="app.js"></script>
 </body>
 </html>
